@@ -1,0 +1,657 @@
+/*
+  Laurel Institutes
+  CampusLogin Application Form Theme
+  Revised to more closely match the Laurel Apply Now form
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --laurel-burgundy: #771617;
+  --laurel-burgundy-hover: #5f1112;
+  --laurel-teal: #0f9179;
+  --laurel-text: #333333;
+  --laurel-muted: #666666;
+  --laurel-border: #cfd3d7;
+  --laurel-border-light: #e3e5e7;
+  --laurel-background: #ffffff;
+  --laurel-field-background: #ffffff;
+  --laurel-error: #b42318;
+}
+
+/* ---------------------------------------------------------
+   Reset and page structure
+--------------------------------------------------------- */
+
+html,
+body {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  background: var(--laurel-background) !important;
+  color: var(--laurel-text) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit !important;
+}
+
+form,
+#form1,
+#aspnetForm,
+.container,
+.container-fluid,
+.form-container,
+.form-wrapper,
+.main-content,
+.mainContent,
+.content,
+.content-wrapper {
+  width: 100% !important;
+  max-width: 920px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+form,
+#form1,
+#aspnetForm {
+  padding: 8px 18px 32px !important;
+  background: transparent !important;
+}
+
+/* Remove framework decoration that makes the iframe look separate */
+fieldset,
+.form-section,
+.section,
+.panel,
+.card,
+.well {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ---------------------------------------------------------
+   Typography
+--------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+legend,
+.page-title,
+.form-title,
+.title,
+.heading {
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-style: normal !important;
+  text-transform: none !important;
+}
+
+h1,
+.page-title,
+.form-title {
+  margin: 0 0 22px !important;
+  color: var(--laurel-burgundy) !important;
+  font-size: 34px !important;
+  font-weight: 300 !important;
+  line-height: 1.2 !important;
+}
+
+/* Primary form section headings */
+h2 {
+  clear: both !important;
+  margin: 38px 0 22px !important;
+  padding: 0 0 11px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--laurel-border-light) !important;
+  background: transparent !important;
+  color: var(--laurel-burgundy) !important;
+  font-size: 23px !important;
+  font-weight: 400 !important;
+  line-height: 1.3 !important;
+}
+
+/* Education and other subsections */
+h3,
+legend {
+  clear: both !important;
+  margin: 28px 0 18px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--laurel-text) !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+}
+
+h4,
+h5,
+h6 {
+  margin: 22px 0 12px !important;
+  color: var(--laurel-text) !important;
+  font-weight: 500 !important;
+}
+
+p,
+.description,
+.help-block,
+.form-text,
+.instructions,
+small {
+  color: var(--laurel-muted) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+}
+
+a {
+  color: var(--laurel-burgundy) !important;
+  font-weight: 500 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+a:hover,
+a:focus {
+  color: var(--laurel-teal) !important;
+}
+
+hr {
+  height: 1px !important;
+  margin: 30px 0 !important;
+  border: 0 !important;
+  background: var(--laurel-border-light) !important;
+}
+
+/* ---------------------------------------------------------
+   CampusLogin table layout
+   Stacks the label above its field to resemble Laurel's form
+--------------------------------------------------------- */
+
+table {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  background: transparent !important;
+}
+
+/* Most CampusLogin questions are rendered as label/input cells */
+table > tbody > tr {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 0 20px !important;
+}
+
+table > tbody > tr > td,
+table > tbody > tr > th {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  border: 0 !important;
+  vertical-align: top !important;
+  background: transparent !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+}
+
+/* Nested tables are commonly used for dates and grouped controls */
+td table > tbody > tr,
+th table > tbody > tr,
+.date table > tbody > tr,
+.Date table > tbody > tr {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  align-items: flex-end !important;
+  margin: 0 !important;
+}
+
+td table > tbody > tr > td,
+th table > tbody > tr > td,
+.date table > tbody > tr > td,
+.Date table > tbody > tr > td {
+  display: block !important;
+  flex: 1 1 120px !important;
+  width: auto !important;
+  padding: 0 !important;
+}
+
+/* ---------------------------------------------------------
+   Labels
+--------------------------------------------------------- */
+
+label,
+.control-label,
+.form-label,
+.field-label,
+.Label,
+.label,
+table > tbody > tr > td:first-child:not(:only-child) {
+  display: block !important;
+  margin: 0 0 7px !important;
+  color: var(--laurel-text) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+}
+
+.required,
+.req,
+.asterisk,
+label span[style*="red"],
+label span[style*="Red"] {
+  color: var(--laurel-burgundy) !important;
+}
+
+/* ---------------------------------------------------------
+   Inputs
+--------------------------------------------------------- */
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+input[type="url"],
+input[type="search"],
+select,
+textarea,
+.form-control,
+.input,
+.TextBox,
+.DropDownList {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 46px !important;
+  margin: 0 !important;
+  padding: 10px 13px !important;
+  border: 1px solid var(--laurel-border) !important;
+  border-radius: 4px !important;
+  outline: 0 !important;
+  background-color: var(--laurel-field-background) !important;
+  color: var(--laurel-text) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+select,
+select.form-control,
+.DropDownList {
+  cursor: pointer !important;
+}
+
+textarea,
+textarea.form-control,
+.TextBox[multiline="true"] {
+  min-height: 125px !important;
+  resize: vertical !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #858585 !important;
+  opacity: 1 !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+select:focus,
+textarea:focus,
+.form-control:focus,
+.input:focus,
+.TextBox:focus,
+.DropDownList:focus {
+  border-color: var(--laurel-teal) !important;
+  box-shadow: 0 0 0 2px rgba(15, 145, 121, 0.14) !important;
+}
+
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly],
+.form-control[disabled],
+.form-control[readonly] {
+  cursor: not-allowed !important;
+  background: #f3f3f3 !important;
+  color: #777777 !important;
+}
+
+/* File upload */
+input[type="file"] {
+  width: 100% !important;
+  min-height: 46px !important;
+  padding: 8px !important;
+  border: 1px solid var(--laurel-border) !important;
+  border-radius: 4px !important;
+  background: #ffffff !important;
+  color: var(--laurel-text) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 14px !important;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 12px !important;
+  padding: 8px 13px !important;
+  border: 0 !important;
+  border-radius: 3px !important;
+  background: #eceeef !important;
+  color: var(--laurel-text) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+}
+
+/* ---------------------------------------------------------
+   Checkboxes and radio buttons
+--------------------------------------------------------- */
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 18px !important;
+  height: 18px !important;
+  min-height: 0 !important;
+  margin: 2px 8px 0 0 !important;
+  padding: 0 !important;
+  vertical-align: top !important;
+  accent-color: var(--laurel-burgundy) !important;
+}
+
+.checkbox,
+.radio,
+.checkbox-inline,
+.radio-inline {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 5px !important;
+  margin: 8px 0 !important;
+}
+
+.checkbox label,
+.radio label,
+.checkbox-inline label,
+.radio-inline label,
+label.checkbox,
+label.radio {
+  display: inline !important;
+  margin: 0 !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+}
+
+/* ---------------------------------------------------------
+   Buttons
+--------------------------------------------------------- */
+
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+.btn,
+.button,
+.Button,
+.submit,
+.submit-button,
+.btn-primary,
+a.btn,
+a.button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 125px !important;
+  min-height: 46px !important;
+  margin: 12px 10px 8px 0 !important;
+  padding: 11px 24px !important;
+  border: 1px solid var(--laurel-burgundy) !important;
+  border-radius: 3px !important;
+  background: var(--laurel-burgundy) !important;
+  color: #ffffff !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+button:hover,
+button:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="button"]:hover,
+input[type="button"]:focus,
+.btn:hover,
+.btn:focus,
+.button:hover,
+.button:focus,
+.Button:hover,
+.Button:focus,
+.submit:hover,
+.submit:focus,
+.submit-button:hover,
+.submit-button:focus,
+.btn-primary:hover,
+.btn-primary:focus,
+a.btn:hover,
+a.btn:focus,
+a.button:hover,
+a.button:focus {
+  border-color: var(--laurel-burgundy-hover) !important;
+  background: var(--laurel-burgundy-hover) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* Back and previous actions */
+.btn-secondary,
+.secondary,
+.previous,
+.prev,
+.back,
+input[value*="Back"],
+input[value*="Previous"] {
+  border-color: #9a9a9a !important;
+  background: #ffffff !important;
+  color: var(--laurel-text) !important;
+}
+
+.btn-secondary:hover,
+.secondary:hover,
+.previous:hover,
+.prev:hover,
+.back:hover,
+input[value*="Back"]:hover,
+input[value*="Previous"]:hover {
+  border-color: #666666 !important;
+  background: #f4f4f4 !important;
+  color: var(--laurel-text) !important;
+}
+
+/* ---------------------------------------------------------
+   Notices, validation and disclosures
+--------------------------------------------------------- */
+
+.error,
+.Error,
+.field-validation-error,
+.validation-summary-errors,
+.alert-danger,
+.text-danger,
+.invalid-feedback,
+span[style*="color:red"],
+span[style*="color: red"],
+span[style*="color:Red"],
+span[style*="color: Red"] {
+  color: var(--laurel-error) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.validation-summary-errors,
+.alert-danger {
+  margin: 0 0 24px !important;
+  padding: 14px 16px !important;
+  border: 1px solid #efb5ae !important;
+  border-left: 4px solid var(--laurel-error) !important;
+  border-radius: 3px !important;
+  background: #fff6f5 !important;
+}
+
+.alert,
+.message,
+.notice,
+.info,
+.success {
+  margin: 0 0 24px !important;
+  padding: 14px 16px !important;
+  border: 1px solid rgba(15, 145, 121, 0.28) !important;
+  border-left: 4px solid var(--laurel-teal) !important;
+  border-radius: 3px !important;
+  background: #f3fbf9 !important;
+  color: var(--laurel-text) !important;
+}
+
+/* Long Clery and consent text */
+.disclosure,
+.disclaimer,
+.consent,
+.terms,
+.legal,
+.instructions,
+td[colspan] p {
+  color: var(--laurel-muted) !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+/* ---------------------------------------------------------
+   Progress elements, when present
+--------------------------------------------------------- */
+
+.progress,
+.progressbar,
+.progress-bar-container,
+.steps,
+.step-list,
+.wizard-steps {
+  margin: 0 0 28px !important;
+}
+
+.progress {
+  height: 8px !important;
+  overflow: hidden !important;
+  border-radius: 10px !important;
+  background: #e5e5e5 !important;
+}
+
+.progress-bar,
+.progress .bar,
+.progressbar .active,
+.steps .active,
+.wizard-steps .active {
+  background: var(--laurel-burgundy) !important;
+  color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   Responsive layout
+--------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  body {
+    font-size: 15px !important;
+  }
+
+  form,
+  #form1,
+  #aspnetForm {
+    padding: 5px 10px 24px !important;
+  }
+
+  h1,
+  .page-title,
+  .form-title {
+    font-size: 29px !important;
+  }
+
+  h2 {
+    margin-top: 32px !important;
+    font-size: 21px !important;
+  }
+
+  h3,
+  legend {
+    font-size: 17px !important;
+  }
+
+  td table > tbody > tr,
+  th table > tbody > tr,
+  .date table > tbody > tr,
+  .Date table > tbody > tr {
+    display: block !important;
+  }
+
+  td table > tbody > tr > td,
+  th table > tbody > tr > td,
+  .date table > tbody > tr > td,
+  .Date table > tbody > tr > td {
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+
+  button,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  .btn,
+  .button,
+  .Button,
+  .submit,
+  .submit-button,
+  .btn-primary,
+  a.btn,
+  a.button {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+}
