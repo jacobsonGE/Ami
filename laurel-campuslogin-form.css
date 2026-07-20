@@ -1,0 +1,606 @@
+/*
+  Laurel Institutes custom stylesheet for CampusLogin application forms
+  Brand references:
+  Burgundy: #771617
+  Teal:     #0f9179
+  Cream:    #ebdfa7
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  --laurel-burgundy: #771617;
+  --laurel-burgundy-dark: #5e1011;
+  --laurel-teal: #0f9179;
+  --laurel-teal-dark: #0a735f;
+  --laurel-cream: #ebdfa7;
+  --laurel-cream-light: #f8f4e3;
+  --laurel-text: #2b2b2b;
+  --laurel-muted: #666666;
+  --laurel-border: #c9c9c9;
+  --laurel-light-border: #e5e5e5;
+  --laurel-error: #b42318;
+  --laurel-white: #ffffff;
+}
+
+/* Base document */
+html,
+body {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+  color: var(--laurel-text) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit !important;
+}
+
+form,
+#form1,
+#aspnetForm,
+.container,
+.container-fluid,
+.form-container,
+.form-wrapper,
+.main-content,
+.mainContent,
+.content,
+.content-wrapper {
+  width: 100% !important;
+  max-width: 940px !important;
+  margin: 0 auto !important;
+}
+
+form,
+#form1,
+#aspnetForm {
+  padding: 10px 12px 24px !important;
+  background: transparent !important;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.page-title,
+.form-title,
+.title,
+.heading,
+legend {
+  margin-top: 0 !important;
+  color: var(--laurel-burgundy) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+}
+
+h1,
+.page-title,
+.form-title {
+  margin-bottom: 18px !important;
+  font-size: clamp(28px, 4vw, 38px) !important;
+}
+
+h2 {
+  margin: 30px 0 16px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 3px solid var(--laurel-cream) !important;
+  font-size: clamp(22px, 3vw, 28px) !important;
+}
+
+h3,
+legend {
+  margin: 24px 0 14px !important;
+  font-size: 20px !important;
+}
+
+p,
+.description,
+.help-block,
+.form-text,
+small {
+  color: var(--laurel-muted) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+}
+
+a {
+  color: var(--laurel-burgundy) !important;
+  font-weight: 500 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+a:hover,
+a:focus {
+  color: var(--laurel-teal) !important;
+}
+
+hr {
+  height: 1px !important;
+  margin: 24px 0 !important;
+  border: 0 !important;
+  background: var(--laurel-light-border) !important;
+}
+
+/* Form sections */
+fieldset,
+.form-section,
+.section,
+.panel,
+.card,
+.well {
+  min-width: 0 !important;
+  margin: 0 0 24px !important;
+  padding: 22px !important;
+  border: 1px solid var(--laurel-light-border) !important;
+  border-radius: 4px !important;
+  background: var(--laurel-white) !important;
+  box-shadow: none !important;
+}
+
+fieldset legend {
+  width: auto !important;
+  max-width: 100% !important;
+  padding: 0 10px 0 0 !important;
+  border: 0 !important;
+  background: var(--laurel-white) !important;
+}
+
+.form-group,
+.field,
+.form-field,
+.control-group,
+.input-group,
+.row-fluid,
+.question,
+.form-row {
+  margin-bottom: 18px !important;
+}
+
+/* Labels */
+label,
+.control-label,
+.form-label,
+.field-label,
+.Label,
+td:first-child:not(:only-child) {
+  color: var(--laurel-text) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+}
+
+.required,
+.req,
+.asterisk,
+label span[style*="red"],
+label span[style*="Red"] {
+  color: var(--laurel-burgundy) !important;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+input[type="url"],
+input[type="search"],
+select,
+textarea,
+.form-control,
+.input,
+.TextBox,
+.DropDownList {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 48px !important;
+  margin: 6px 0 0 !important;
+  padding: 11px 14px !important;
+  border: 1px solid var(--laurel-border) !important;
+  border-radius: 3px !important;
+  outline: none !important;
+  background-color: var(--laurel-white) !important;
+  color: var(--laurel-text) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  box-shadow: none !important;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+textarea,
+textarea.form-control {
+  min-height: 120px !important;
+  resize: vertical !important;
+}
+
+select,
+select.form-control {
+  cursor: pointer !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #858585 !important;
+  opacity: 1 !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+select:focus,
+textarea:focus,
+.form-control:focus,
+.input:focus,
+.TextBox:focus,
+.DropDownList:focus {
+  border-color: var(--laurel-teal) !important;
+  box-shadow: 0 0 0 3px rgba(15, 145, 121, 0.16) !important;
+}
+
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly],
+.form-control[disabled],
+.form-control[readonly] {
+  cursor: not-allowed !important;
+  background: #f2f2f2 !important;
+  color: #777777 !important;
+}
+
+/* Checkboxes and radio buttons */
+input[type="checkbox"],
+input[type="radio"] {
+  width: 18px !important;
+  height: 18px !important;
+  margin: 2px 8px 0 0 !important;
+  vertical-align: top !important;
+  accent-color: var(--laurel-teal) !important;
+}
+
+.checkbox,
+.radio,
+.checkbox-inline,
+.radio-inline {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+  margin: 8px 0 !important;
+  color: var(--laurel-text) !important;
+  font-weight: 400 !important;
+}
+
+.checkbox label,
+.radio label,
+.checkbox-inline label,
+.radio-inline label,
+label.checkbox,
+label.radio {
+  font-weight: 400 !important;
+}
+
+/* Primary actions */
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+.btn,
+.button,
+.Button,
+.submit,
+.submit-button,
+.btn-primary,
+a.btn,
+a.button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 48px !important;
+  margin: 8px 8px 8px 0 !important;
+  padding: 12px 26px !important;
+  border: 2px solid var(--laurel-burgundy) !important;
+  border-radius: 3px !important;
+  background: var(--laurel-burgundy) !important;
+  color: var(--laurel-white) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease !important;
+}
+
+button:hover,
+button:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="button"]:hover,
+input[type="button"]:focus,
+.btn:hover,
+.btn:focus,
+.button:hover,
+.button:focus,
+.Button:hover,
+.Button:focus,
+.submit:hover,
+.submit:focus,
+.submit-button:hover,
+.submit-button:focus,
+.btn-primary:hover,
+.btn-primary:focus,
+a.btn:hover,
+a.btn:focus,
+a.button:hover,
+a.button:focus {
+  border-color: var(--laurel-teal) !important;
+  background: var(--laurel-teal) !important;
+  color: var(--laurel-white) !important;
+  text-decoration: none !important;
+}
+
+button:active,
+input[type="submit"]:active,
+input[type="button"]:active,
+.btn:active,
+.button:active {
+  transform: translateY(1px) !important;
+}
+
+/* Secondary and navigation actions */
+.btn-secondary,
+.secondary,
+.previous,
+.prev,
+.back,
+input[value*="Back"],
+input[value*="Previous"] {
+  border-color: var(--laurel-burgundy) !important;
+  background: var(--laurel-white) !important;
+  color: var(--laurel-burgundy) !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.secondary:hover,
+.secondary:focus,
+.previous:hover,
+.previous:focus,
+.prev:hover,
+.prev:focus,
+.back:hover,
+.back:focus,
+input[value*="Back"]:hover,
+input[value*="Previous"]:hover {
+  border-color: var(--laurel-burgundy-dark) !important;
+  background: var(--laurel-cream-light) !important;
+  color: var(--laurel-burgundy-dark) !important;
+}
+
+/* New and returning applicant login areas */
+.login-container,
+.login-wrapper,
+.returning-applicant,
+.returningApplicant,
+.new-applicant,
+.newApplicant,
+.login-box,
+.login-panel {
+  margin-bottom: 24px !important;
+  padding: 24px !important;
+  border: 1px solid var(--laurel-light-border) !important;
+  border-top: 5px solid var(--laurel-teal) !important;
+  border-radius: 3px !important;
+  background: var(--laurel-white) !important;
+}
+
+.login-container h1,
+.login-container h2,
+.login-wrapper h1,
+.login-wrapper h2,
+.returning-applicant h1,
+.returning-applicant h2,
+.returningApplicant h1,
+.returningApplicant h2,
+.new-applicant h1,
+.new-applicant h2,
+.newApplicant h1,
+.newApplicant h2,
+.login-box h1,
+.login-box h2,
+.login-panel h1,
+.login-panel h2 {
+  padding-bottom: 10px !important;
+  border-bottom: 3px solid var(--laurel-cream) !important;
+}
+
+/* Validation and notices */
+.error,
+.Error,
+.field-validation-error,
+.validation-summary-errors,
+.alert-danger,
+.text-danger,
+.invalid-feedback,
+span[style*="color:red"],
+span[style*="color: red"],
+span[style*="color:Red"],
+span[style*="color: Red"] {
+  color: var(--laurel-error) !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.validation-summary-errors,
+.alert-danger {
+  margin: 0 0 20px !important;
+  padding: 14px 16px !important;
+  border: 1px solid #f1b4ad !important;
+  border-left: 5px solid var(--laurel-error) !important;
+  border-radius: 3px !important;
+  background: #fff4f2 !important;
+}
+
+.alert,
+.message,
+.notice,
+.info,
+.success {
+  margin: 0 0 20px !important;
+  padding: 14px 16px !important;
+  border: 1px solid rgba(15, 145, 121, 0.3) !important;
+  border-left: 5px solid var(--laurel-teal) !important;
+  border-radius: 3px !important;
+  background: #f0faf7 !important;
+  color: var(--laurel-text) !important;
+}
+
+/* Tables used by older CampusLogin form layouts */
+table {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-collapse: collapse !important;
+  background: transparent !important;
+}
+
+td,
+th {
+  padding: 7px 8px !important;
+  border: 0 !important;
+  vertical-align: top !important;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important;
+}
+
+/* Wizard or application progress indicators */
+.progress,
+.progressbar,
+.progress-bar-container,
+.steps,
+.step-list,
+.wizard-steps {
+  margin: 0 0 24px !important;
+}
+
+.progress {
+  height: 10px !important;
+  overflow: hidden !important;
+  border-radius: 10px !important;
+  background: #ececec !important;
+}
+
+.progress-bar,
+.progress .bar,
+.progressbar .active,
+.steps .active,
+.wizard-steps .active {
+  background: var(--laurel-teal) !important;
+  color: var(--laurel-white) !important;
+}
+
+/* Remove framework decorations that conflict inside an iframe */
+.navbar,
+header,
+footer,
+.site-header,
+.site-footer {
+  box-shadow: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  body {
+    font-size: 15px !important;
+  }
+
+  form,
+  #form1,
+  #aspnetForm {
+    padding: 6px 8px 18px !important;
+  }
+
+  fieldset,
+  .form-section,
+  .section,
+  .panel,
+  .card,
+  .well,
+  .login-container,
+  .login-wrapper,
+  .returning-applicant,
+  .returningApplicant,
+  .new-applicant,
+  .newApplicant,
+  .login-box,
+  .login-panel {
+    padding: 16px !important;
+  }
+
+  .row,
+  .form-row,
+  .row-fluid {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  [class*="col-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  button,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  .btn,
+  .button,
+  .Button,
+  .submit,
+  .submit-button,
+  .btn-primary,
+  a.btn,
+  a.button {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+}
