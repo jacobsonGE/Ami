@@ -1,0 +1,234 @@
+/* ==========================================================================
+   Laurel Institutes — CampusLogin Application Form Branding Override
+   Target page: https://form1.campuslogin.com/Laurel_Institutes/35500/Application/Application.campuslogin
+   Purpose: Bring the CampusLogin application form visually in line with the
+            branding on https://laurel.edu/request-information
+   Colors and fonts below were pulled directly from computed styles on the
+   live laurel.edu site and inspected against the live application form
+   as of 2026-07-21.
+   ========================================================================== */
+
+:root {
+  --laurel-maroon: #771617;       /* primary brand color: buttons, links, section headings */
+  --laurel-maroon-dark: #5c1112;  /* hover/active state */
+  --laurel-teal: #0C6E5C;         /* top utility bar color on laurel.edu */
+  --laurel-gold: #EBE1A8;         /* accent used in laurel.edu nav text */
+  --laurel-text: #333333;         /* body copy color */
+  --laurel-border: #cccccc;
+  --laurel-white: #FFFFFF;
+
+  /* laurel.edu uses a licensed custom serif ("anth") for body/headings and
+     Roboto for nav/buttons/CTAs. We don't have access to the "anth" font
+     file, so Georgia is used as the closest safe serif fallback. Swap in
+     the real @font-face if Laurel provides the font files. */
+  --laurel-font-serif: Georgia, "Times New Roman", serif;
+  --laurel-font-sans: Roboto, "Open Sans", Tahoma, Helvetica, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   Page background & base typography
+   -------------------------------------------------------------------------- */
+body {
+  background-color: var(--laurel-white) !important;
+  color: var(--laurel-text) !important;
+  font-family: var(--laurel-font-sans) !important;
+  font-size: 15px;
+}
+
+/* --------------------------------------------------------------------------
+   Branded header banner
+   The CampusLogin form has no logo/header of its own, so this inserts a
+   Laurel-branded strip above the form using the live logo asset from
+   laurel.edu. Remove this block if Laurel prefers a bare form.
+   -------------------------------------------------------------------------- */
+body::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 90px;
+  margin: 0 0 24px 0;
+  background:
+    var(--laurel-white)
+    url("https://laurel.edu/wp-content/uploads/2026/01/Laurel-logo-2026.png")
+    no-repeat center / auto 70px;
+  border-top: 6px solid var(--laurel-teal);
+  border-bottom: 4px solid var(--laurel-maroon);
+}
+
+/* --------------------------------------------------------------------------
+   Form container
+   -------------------------------------------------------------------------- */
+.clf-form {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+}
+
+/* --------------------------------------------------------------------------
+   Section headings ("Your Information", "Education Information", etc.)
+   Styled to match the maroon, bold section styling used on laurel.edu.
+   -------------------------------------------------------------------------- */
+.clf-d-section-heading {
+  color: var(--laurel-maroon) !important;
+  font-family: var(--laurel-font-sans) !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid var(--laurel-maroon);
+  padding-bottom: 8px;
+  margin: 32px 0 16px !important;
+}
+
+.clf-d-section-sub-heading {
+  color: var(--laurel-text) !important;
+  font-family: var(--laurel-font-sans) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  margin: 16px 0 8px !important;
+}
+
+/* --------------------------------------------------------------------------
+   Section wrapper spacing
+   (.clui-d-fieldset wraps each section heading + its fields — just spacing,
+   no boxed callout, so it doesn't fight with the section heading styling)
+   -------------------------------------------------------------------------- */
+.clui-d-fieldset {
+  margin: 12px 0;
+}
+
+/* NOTE on section headings: in the live form, a few "headings" (e.g. the
+   Department of Education reporting note, the Clery Disclosure crime-stats
+   paragraph) are actually full sentences typed into the heading field
+   rather than a short title, with the real text nested in a <p> inside the
+   <h2>/<h3>. Since color/font-weight/text-transform are inherited, that
+   nested text picks up the same maroon/bold/uppercase heading treatment.
+   CSS can't reliably tell "this is a 3-word title" from "this is a
+   disclosure paragraph someone put in the title field" — so rather than
+   silently overriding it, flag this to Laurel/CampusLogin admin as a
+   content fix: move those long disclosure sentences into a body/description
+   field instead of the section-heading field, and the styling below will
+   apply correctly to all of them. */
+
+/* --------------------------------------------------------------------------
+   Field labels
+   -------------------------------------------------------------------------- */
+.clf-d-label,
+label {
+  color: var(--laurel-text) !important;
+  font-family: var(--laurel-font-sans) !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Inputs & selects
+   -------------------------------------------------------------------------- */
+.clf-d-fieldset {
+  margin-bottom: 18px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  font-family: var(--laurel-font-sans) !important;
+  font-size: 14px !important;
+  color: var(--laurel-text) !important;
+  border: 1px solid var(--laurel-border) !important;
+  border-radius: 2px !important;
+  padding: 10px 12px !important;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--laurel-maroon) !important;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(119, 22, 23, 0.15);
+}
+
+/* Checkboxes (e.g. consent to be contacted) */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--laurel-maroon);
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   Submit button
+   Matches the maroon, square-cornered, bold-uppercase CTA style used for
+   "Apply Now" on laurel.edu.
+   -------------------------------------------------------------------------- */
+.clf-d-submitbutton {
+  background-color: var(--laurel-maroon) !important;
+  color: var(--laurel-white) !important;
+  font-family: var(--laurel-font-sans) !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border: none !important;
+  border-radius: 0px !important;
+  padding: 14px 32px !important;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  display: block;
+  margin: 24px auto 0;
+}
+
+.clf-d-submitbutton:hover,
+.clf-d-submitbutton:focus {
+  background-color: var(--laurel-maroon-dark) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Links
+   -------------------------------------------------------------------------- */
+a {
+  color: var(--laurel-maroon) !important;
+}
+
+a:hover {
+  color: var(--laurel-maroon-dark) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Layout fix: High School Date From / Date To
+   The form's 2-column layout packs fields purely by float order. A ~1.6px
+   height difference between the "high school diploma?" dropdown and the
+   "High School Name" text field (one row up) throws off the packing, so
+   "High School Date From" lands alone in the right column and "High School
+   Date To" drops to the next row instead of sitting beside it. Forcing
+   "Date From" to clear back to a fresh row realigns both fields onto the
+   same line (and restores normal alternating layout for the fields below,
+   like High School Address / HS - Did you Graduate).
+   -------------------------------------------------------------------------- */
+#AttributeDate_6609Set {
+  clear: left !important;
+}
+
+/* --------------------------------------------------------------------------
+   Dividers
+   -------------------------------------------------------------------------- */
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 28px auto;
+  max-width: 700px;
+}
