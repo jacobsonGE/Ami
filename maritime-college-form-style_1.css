@@ -1,0 +1,253 @@
+/* ==========================================================================
+   The Maritime College (Halifax)
+   Custom stylesheet for the CampusLogin lead form
+   Target page: form1.campuslogin.com/.../MartimeCollege2026.campuslogin
+
+   Matches the visual style of the "Send us a message" form on
+   themaritimecollege.com/contact-us, built with these tokens pulled
+   directly from that site's rendered CSS:
+     - Teal accent:   #009b9f  (button, focus rings, links)
+     - Teal hover:    #008a8d
+     - Navy heading:  #0f172a
+     - Slate label:   #334155
+     - Slate body:    #475569
+     - Input bg:      #fafafa  (border #e5e7eb)
+     - Heading font:  "DM Sans" (bold)
+     - Body font:     "Work Sans"
+
+   Paste this into the CampusLogin form's custom CSS field.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Work+Sans:wght@400;500&display=swap");
+
+:root {
+  --mc-teal: #009b9f;
+  --mc-teal-dark: #008a8d;
+  --mc-navy: #0f172a;
+  --mc-label: #334155;
+  --mc-body-text: #475569;
+  --mc-input-bg: #fafafa;
+  --mc-input-border: #e5e7eb;
+  --mc-card-border: #f3f4f6;
+  --mc-font-heading: "DM Sans", sans-serif;
+  --mc-font-body: "Work Sans", sans-serif;
+}
+
+body {
+  font-family: var(--mc-font-body);
+}
+
+/* Card wrapper around the whole form ---------------------------------------
+   NOTE: CampusLogin renders this form as two separate sibling containers
+   that both carry the .clf-form class: #SelectedPartsFormContainer (the
+   fields) and #SubmitContainer (just the submit button), stacked directly
+   on top of one another with no gap. To make them read as one continuous
+   card, the shared styles below carry no top/bottom radius or shadow;
+   the two ID-scoped rules that follow add rounded corners and a shadow
+   only on their own outer edge (top piece: top+sides, bottom piece:
+   bottom+sides), so the seam between them disappears. */
+.clf-form {
+  background-color: #ffffff;
+  font-family: var(--mc-font-body);
+  max-width: 620px;
+  margin: 0 auto;
+  border-left: 1px solid var(--mc-card-border);
+  border-right: 1px solid var(--mc-card-border);
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+#SelectedPartsFormContainer.clf-form {
+  border-top: 1px solid var(--mc-card-border);
+  border-radius: 20px 20px 0 0;
+  padding-top: 32px;
+  padding-bottom: 24px;
+  box-shadow:
+    -4px 0 20px rgba(22, 59, 101, 0.15),
+    4px 0 20px rgba(22, 59, 101, 0.15),
+    0 -4px 20px rgba(22, 59, 101, 0.15);
+}
+
+#SubmitContainer.clf-form {
+  border-bottom: 1px solid var(--mc-card-border);
+  border-radius: 0 0 20px 20px;
+  padding-top: 0;
+  padding-bottom: 32px;
+  box-shadow:
+    -4px 0 20px rgba(22, 59, 101, 0.15),
+    4px 0 20px rgba(22, 59, 101, 0.15),
+    0 4px 20px rgba(22, 59, 101, 0.15);
+}
+
+/* Optional section heading / sub-heading, styled to match
+   "Send us a message" / "Submit Your Form" on the live site --------------- */
+.clf-d-section-heading {
+  display: block;
+  font-family: var(--mc-font-heading);
+  color: var(--mc-navy);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.clf-d-section-sub-heading {
+  display: block;
+  font-family: var(--mc-font-body);
+  color: var(--mc-body-text);
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+/* Field groups -------------------------------------------------------------- */
+.clf-d-fieldset {
+  margin-bottom: 18px;
+  box-sizing: border-box;
+}
+
+/* Two-column layout: keep the platform's float-based columns, just add
+   breathing room between them */
+.clf-a-2columns .clf-d-fieldset {
+  padding-right: 12px;
+}
+
+/* Visible labels (label-above mode) ----------------------------------------- */
+.clf-a-labelabove .clf-d-label {
+  display: block;
+  font-family: var(--mc-font-heading);
+  color: var(--mc-label);
+  font-weight: 500;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.clf-d-requiredmark {
+  color: var(--mc-teal-dark);
+  margin-left: 2px;
+}
+
+/* Inputs, selects, textareas ------------------------------------------------- */
+.clf-d-control input[type="text"],
+.clf-d-control input[type="email"],
+.clf-d-control input[type="tel"],
+.clf-d-control input:not([type]),
+.clf-d-control select,
+.clf-d-control textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--mc-font-body);
+  font-size: 14px;
+  color: #000000;
+  background-color: var(--mc-input-bg);
+  border: 1px solid var(--mc-input-border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Placeholder-as-label mode (this form's current config) --------------------- */
+.clf-d-control input::placeholder {
+  color: #6b7280;
+  opacity: 1;
+}
+
+.clf-d-control input:focus,
+.clf-d-control select:focus,
+.clf-d-control textarea:focus {
+  outline: none;
+  border-color: var(--mc-teal);
+  box-shadow: 0 0 0 1px var(--mc-teal);
+}
+
+/* Checkbox / radio rows (e.g. "Lead Inquiries" options) ---------------------- */
+.clf-form-crbox {
+  font-family: var(--mc-font-body);
+  font-size: 13px;
+  color: var(--mc-body-text);
+}
+
+.clf-form-crbox label,
+.clf-form-crbox span {
+  transition: color 0.15s ease;
+}
+
+.clf-form-crbox:hover {
+  color: var(--mc-teal);
+}
+
+.clf-form-crbox input[type="checkbox"],
+.clf-form-crbox input[type="radio"] {
+  accent-color: var(--mc-teal);
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Consent / disclaimer text ---------------------------------------------------- */
+.clf-text-italic.clf-padding-small {
+  display: block;
+  font-family: var(--mc-font-body);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--mc-body-text);
+  margin: 16px 0 18px;
+}
+
+/* Submit button ------------------------------------------------------------------ */
+#Submit.clf-d-submitbutton,
+.clf-d-submitbutton {
+  display: block;
+  width: 100%;
+  background-color: var(--mc-teal);
+  color: #ffffff;
+  font-family: var(--mc-font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 0;
+  cursor: pointer;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.15s ease;
+}
+
+#Submit.clf-d-submitbutton:hover,
+.clf-d-submitbutton:hover {
+  background-color: var(--mc-teal-dark);
+}
+
+#Submit.clf-d-submitbutton:focus,
+.clf-d-submitbutton:focus {
+  outline: 2px solid var(--mc-navy);
+  outline-offset: 2px;
+}
+
+/* Small screens -------------------------------------------------------------------- */
+@media (max-width: 620px) {
+  .clf-form {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  #SelectedPartsFormContainer.clf-form {
+    border-radius: 0;
+    padding-top: 20px;
+    box-shadow: none;
+    border-top: none;
+  }
+
+  #SubmitContainer.clf-form {
+    border-radius: 0;
+    padding-bottom: 20px;
+    box-shadow: none;
+    border-bottom: none;
+  }
+
+  .clf-a-2columns .clf-d-fieldset {
+    float: none !important;
+    width: 100% !important;
+    padding-right: 0;
+  }
+}
