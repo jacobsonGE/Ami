@@ -1,0 +1,229 @@
+/* ==========================================================================
+   Georgia Career Institute (GCI)
+   Custom stylesheet for the CampusLogin lead form
+   Target page: form1.campuslogin.com/.../New2026.campuslogin
+
+   Matches the visual style of the horizontal "ENROLLMENT INFO!" bar on
+   gci.edu/contact/, built with these tokens pulled directly from that
+   site's rendered CSS (Gravity Forms on WordPress):
+     - Purple bar bg:  #712D76
+     - Yellow button:  #FBDB6D  (black uppercase text, pill shape)
+     - Teal link:      #5DCECE
+     - Input text:     #343434
+     - Font:           "Roboto Condensed"
+     - Placeholders render as bold uppercase labels inside the field
+       (e.g. "FIRST NAME"), same trick this CampusLogin form already uses.
+
+   Paste this into the CampusLogin form's custom CSS field.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&display=swap");
+
+:root {
+  --gci-purple: #712d76;
+  --gci-yellow: #fbdb6d;
+  --gci-yellow-dark: #f5cd3f;
+  --gci-teal: #5dcece;
+  --gci-text: #343434;
+  --gci-font: "Roboto Condensed", sans-serif;
+}
+
+body {
+  font-family: var(--gci-font);
+}
+
+/* Bar wrapper ---------------------------------------------------------------
+   This form's fields, disclaimer, and submit button all live inside one
+   container (#SelectedPartsFormContainer) already laid out horizontally
+   by CampusLogin's "horizontal" layout option, so no seam-fixing is
+   needed here (unlike forms where the submit button sits in a separate
+   sibling container) -- this just restyles the one bar. */
+#SelectedPartsFormContainer.clf-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  background-color: var(--gci-purple);
+  font-family: var(--gci-font);
+  padding: 24px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* The separate (normally empty) submit container CampusLogin also renders
+   -- keep it invisible so it doesn't add an empty purple strip below. */
+#SubmitContainer.clf-form {
+  display: none;
+}
+
+/* Field groups -------------------------------------------------------------- */
+.clf-d-fieldset {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  width: auto;
+  flex: 0 1 auto;
+}
+
+/* Hidden labels (this form uses placeholder-as-label, like the live site) --- */
+.clf-d-label {
+  display: none;
+}
+
+.clf-d-requiredmark {
+  display: none;
+}
+
+/* Inputs, selects ------------------------------------------------------------ */
+.clf-d-control input[type="text"],
+.clf-d-control input[type="email"],
+.clf-d-control input[type="tel"],
+.clf-d-control input:not([type]),
+.clf-d-control select {
+  box-sizing: border-box;
+  font-family: var(--gci-font);
+  font-size: 14px;
+  color: var(--gci-text);
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 0;
+  padding: 0 12px;
+  height: 45px;
+  min-width: 140px;
+}
+
+.clf-d-control select {
+  min-width: 160px;
+}
+
+.clf-d-control input::placeholder {
+  color: #000000;
+  opacity: 1;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.clf-d-control input:focus,
+.clf-d-control select:focus {
+  outline: none;
+  border-color: var(--gci-yellow);
+  box-shadow: 0 0 0 2px var(--gci-yellow);
+}
+
+/* Consent / disclaimer text --------------------------------------------------- */
+.clf-text-italic.clf-padding-small {
+  color: #ffffff;
+  font-family: var(--gci-font);
+  font-size: 13px;
+  font-style: normal;
+  line-height: 1.4;
+  flex: 1 1 260px;
+  margin: 0;
+}
+
+.clf-text-italic.clf-padding-small a {
+  color: var(--gci-teal);
+  text-decoration: none;
+}
+
+.clf-text-italic.clf-padding-small a:hover {
+  text-decoration: underline;
+}
+
+/* Checkbox / radio rows, if this form ever adds any -------------------------- */
+.clf-form-crbox {
+  font-family: var(--gci-font);
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.clf-form-crbox input[type="checkbox"],
+.clf-form-crbox input[type="radio"] {
+  accent-color: var(--gci-yellow);
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Submit button --------------------------------------------------------------- */
+#Submit.clf-d-submitbutton,
+.clf-d-submitbutton {
+  background-color: var(--gci-yellow);
+  color: #000000;
+  font-family: var(--gci-font);
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 999px;
+  padding: 0 28px;
+  height: 45px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+#Submit.clf-d-submitbutton:hover,
+.clf-d-submitbutton:hover {
+  background-color: var(--gci-yellow-dark);
+}
+
+#Submit.clf-d-submitbutton:focus,
+.clf-d-submitbutton:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Optional section heading, in case one is ever configured ------------------ */
+.clf-d-section-heading {
+  display: block;
+  width: 100%;
+  color: #ffffff;
+  font-family: var(--gci-font);
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.clf-d-section-sub-heading {
+  display: block;
+  width: 100%;
+  color: #ffffff;
+  font-family: var(--gci-font);
+  font-size: 14px;
+}
+
+/* Small screens ---------------------------------------------------------------- */
+@media (max-width: 900px) {
+  #SelectedPartsFormContainer.clf-form {
+    padding: 20px 16px;
+  }
+
+  .clf-d-fieldset {
+    flex: 1 1 100%;
+  }
+
+  .clf-d-control input[type="text"],
+  .clf-d-control input[type="email"],
+  .clf-d-control input[type="tel"],
+  .clf-d-control input:not([type]),
+  .clf-d-control select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .clf-text-italic.clf-padding-small {
+    flex: 1 1 100%;
+    order: 10;
+  }
+
+  #Submit.clf-d-submitbutton,
+  .clf-d-submitbutton {
+    width: 100%;
+    order: 11;
+  }
+}
