@@ -1,7 +1,9 @@
 /* ==========================================================================
    Georgia Career Institute (GCI)
    Custom stylesheet for the CampusLogin lead form
-   Target page: form1.campuslogin.com/.../New2026.campuslogin
+   Target page: form1.campuslogin.com/.../New2026v2.campuslogin
+   (the New2026 form's replacement, with the SMS/consent disclaimer field
+   added -- kept New2026 live as a fallback to revert to)
 
    Matches the visual style of the horizontal "ENROLLMENT INFO!" bar on
    gci.edu/contact/, built with these tokens pulled directly from that
@@ -13,6 +15,11 @@
      - Font:           "Roboto Condensed"
      - Placeholders render as bold uppercase labels inside the field
        (e.g. "FIRST NAME"), same trick this CampusLogin form already uses.
+
+   Verified directly against New2026v2.campuslogin (desktop + a simulated
+   mobile width) after the disclaimer field was added: fields, disclaimer,
+   and submit button each land on their own centered, full-width row,
+   matching gci.edu/contact/.
 
    Paste this into the CampusLogin form's custom CSS field.
    ========================================================================== */
@@ -28,7 +35,11 @@
   --gci-font: "Roboto Condensed", sans-serif;
 }
 
+html,
 body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
   font-family: var(--gci-font);
 }
 
@@ -37,17 +48,29 @@ body {
    container (#SelectedPartsFormContainer) already laid out horizontally
    by CampusLogin's "horizontal" layout option, so no seam-fixing is
    needed here (unlike forms where the submit button sits in a separate
-   sibling container) -- this just restyles the one bar. */
+   sibling container) -- this just restyles the one bar.
+
+   NOTE: CampusLogin's own base stylesheet gives .clf-form (and the
+   .clf-a-2columns/3columns/etc. layout variants) fixed pixel widths, so
+   setting width:100% here isn't enough on its own once this is actually
+   embedded in a real iframe -- the fixed-width rule wins on specificity.
+   The !important overrides below (confirmed working by the person who
+   implemented the embed) force it to stretch and center across whatever
+   width the iframe is given. */
+.clf-form {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  box-sizing: border-box;
+  text-align: center;
+}
+
 #SelectedPartsFormContainer.clf-form {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 14px;
+  display: block;
   background-color: var(--gci-purple);
   font-family: var(--gci-font);
   padding: 24px;
-  box-sizing: border-box;
-  width: 100%;
+  text-align: center !important;
 }
 
 /* The separate (normally empty) submit container CampusLogin also renders
@@ -56,13 +79,26 @@ body {
   display: none;
 }
 
-/* Field groups -------------------------------------------------------------- */
-.clf-d-fieldset {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  width: auto;
-  flex: 0 1 auto;
+/* Prevent any column-layout variant from stopping short of full width,
+   in case this form (or a future one) ever uses clf-a-2columns etc. */
+.clf-form.clf-a-2columns,
+.clf-form.clf-a-3columns,
+.clf-form.clf-a-4columns,
+.clf-form.clf-a-5columns,
+.clf-form.clf-a-6columns {
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Field groups -- centered, inline-block instead of floated so the whole
+   row centers as a unit inside the full-width bar. */
+.clf-form.clf-a-horizontal .clf-d-fieldset {
+  float: none !important;
+  display: inline-block !important;
+  vertical-align: top;
+  margin: 0 6px 8px !important;
+  text-align: left;
 }
 
 /* Hidden labels (this form uses placeholder-as-label, like the live site) --- */
@@ -112,15 +148,25 @@ body {
   box-shadow: 0 0 0 2px var(--gci-yellow);
 }
 
-/* Consent / disclaimer text --------------------------------------------------- */
+/* Consent / disclaimer text ---------------------------------------------------
+   On the live site this sits on its own full-width centered line below the
+   row of fields (not next to the button), in white, at 12px. It is NOT
+   currently present as a field on this CampusLogin form -- see the note
+   at the end of this file about adding the text itself in the form admin.
+   This rule styles it correctly the moment it's added, whether as a
+   dedicated text/HTML field (.clf-text-italic) or as the label on the
+   existing SMS-consent checkbox (.clf-form-crbox, styled further below). */
 .clf-text-italic.clf-padding-small {
+  display: block;
+  width: 100%;
+  max-width: 900px;
   color: #ffffff;
   font-family: var(--gci-font);
-  font-size: 13px;
+  font-size: 12px;
   font-style: normal;
-  line-height: 1.4;
-  flex: 1 1 260px;
-  margin: 0;
+  line-height: 1.5;
+  margin: 4px auto 0 !important;
+  text-align: center;
 }
 
 .clf-text-italic.clf-padding-small a {
@@ -132,11 +178,44 @@ body {
   text-decoration: underline;
 }
 
-/* Checkbox / radio rows, if this form ever adds any -------------------------- */
+/* The disclaimer/consent text lives inside its own fieldset
+   (#ReceiveMessageFieldSet), which the horizontal-layout rule above turns
+   into an inline-block box -- that leaves it floating next to the submit
+   button instead of on its own full-width line like the live site. This
+   forces that one fieldset back to a full-width block row. */
+#ReceiveMessageFieldSet.clf-d-fieldset {
+  display: block !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  margin: 4px auto 0 !important;
+  text-align: center !important;
+}
+
+/* Checkbox / radio rows (e.g. the SMS-consent checkbox this form already
+   has a field for, currently with no visible label text) -------------------- */
 .clf-form-crbox {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  margin: 4px auto 0 !important;
   font-family: var(--gci-font);
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 1.5;
   color: #ffffff;
+  text-align: center;
+}
+
+.clf-form-crbox label {
+  display: inline;
+}
+
+.clf-form-crbox a {
+  color: var(--gci-teal);
+  text-decoration: none;
+}
+
+.clf-form-crbox a:hover {
+  text-decoration: underline;
 }
 
 .clf-form-crbox input[type="checkbox"],
@@ -198,13 +277,29 @@ body {
 }
 
 /* Small screens ---------------------------------------------------------------- */
-@media (max-width: 900px) {
-  #SelectedPartsFormContainer.clf-form {
-    padding: 20px 16px;
+@media screen and (max-width: 900px) {
+  .clf-form {
+    padding: 0 12px;
   }
 
+  #SelectedPartsFormContainer.clf-form {
+    padding: 20px 12px;
+  }
+
+  .clf-form.clf-a-horizontal .clf-d-fieldset,
   .clf-d-fieldset {
-    flex: 1 1 100%;
+    float: none !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 0 8px !important;
+    box-sizing: border-box;
+  }
+
+  .clf-form .clf-d-label,
+  .clf-form .clf-d-control {
+    float: none !important;
+    width: 100% !important;
   }
 
   .clf-d-control input[type="text"],
@@ -216,14 +311,16 @@ body {
     min-width: 0;
   }
 
-  .clf-text-italic.clf-padding-small {
-    flex: 1 1 100%;
-    order: 10;
+  .clf-text-italic.clf-padding-small,
+  .clf-form-crbox,
+  #ReceiveMessageFieldSet.clf-d-fieldset {
+    max-width: none !important;
+    padding: 0 4px;
+    margin: 8px 0 12px !important;
   }
 
   #Submit.clf-d-submitbutton,
   .clf-d-submitbutton {
     width: 100%;
-    order: 11;
   }
 }
